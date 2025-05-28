@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --time=148:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=20GB
+#SBATCH --job-name=RM
+#SBATCH --mail-type=ALL
+#SBATCH --requeue
+source /opt/conda/etc/profile.d/conda.sh
+conda activate /mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RM_env
+export PATH=/mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RepeatMasker:/mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RepeatModeler:$PATH
+cd /mnt/data/dayhoff//home/u6575017/Analysis/RM_task/Au3_hapA
+#BuildDatabase -name APSI_v3.hapA -engine ncbi APSI_v3.hapA.fasta
+#RepeatModeler -database APSI_v3.hapA -engine ncbi -threads 24
+RepeatMasker -pa 24 -e rmblast -gff -xsmall -lib RM_1879675.ThuJun11442272023/consensi.fa.classified APSI_v3.hapA.fasta
+
+--------HapB repeatModeler step was done on NCI
+#!/bin/bash
+#SBATCH --time=148:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=20GB
+#SBATCH --job-name=RM
+#SBATCH --mail-type=ALL
+#SBATCH --requeue
+source /opt/conda/etc/profile.d/conda.sh
+conda activate /mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RM_env
+export PATH=/mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RepeatMasker:/mnt/data/dayhoff/home/groups/schwessinger/software/RepeatMasker_setup/RepeatModeler:$PATH
+cd /mnt/data/dayhoff//home/u6575017/Analysis/RM_task/Au3_hapB
+#BuildDatabase -name APSI_v3.hapB -engine ncbi APSI_v3.hapB.fasta
+#RepeatModeler -database APSI_v3.hapB -engine ncbi -threads 24
+RepeatMasker -pa 24 -e rmblast -gff -xsmall -lib consensi.fa.classified APSI_v3.hapB.fasta
+
