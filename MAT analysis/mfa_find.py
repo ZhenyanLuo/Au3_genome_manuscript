@@ -28,7 +28,7 @@ for f in range(0, len(fna), 1):
             for j in range(i+3, len(fna[f].seq), 3):
                 if fna[f].seq[j:j+3] in ['TAA', 'TAG', 'TGA']:
                     #if the ORF is too short, skip
-                    if j-i < 120:
+                    if j-i < 90:
                         break
                     else:
                         header = fna[f].id + '_' + str(i) + '_' + str(j) + '_fwd'
@@ -46,7 +46,7 @@ for f in range(0, len(fna_rev), 1):
             for j in range(i+3, len(fna_rev[f].seq), 3):
                 if fna_rev[f].seq[j:j+3] in ['TAA', 'TAG', 'TGA']:
                     #if the ORF is too short, skip
-                    if j-i < 120:
+                    if j-i < 90:
                         break
                     else:
                         header = fna_rev[f].id + '_' + str(i) + '_' + str(j) + '_rev'
